@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import Deck from './components/Deck';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 
 export default class App extends React.Component {
     render() {
@@ -31,17 +32,18 @@ const Tabs = TabNavigator({
         screen: DeckList,
         navigationOptions: {
             tabBarLabel: 'Deck list',
-            tabBarIcon: <Ionicons size={25} name="ios-albums-outline" />
+            tabBarIcon: <Ionicons size={25} name="ios-albums-outline"/>
         }
     },
     NewDeck: {
         screen: NewDeck,
         navigationOptions: {
             tabBarLabel: 'New deck',
-            tabBarIcon: <Ionicons size={25} name="ios-add-circle-outline" />
+            tabBarIcon: <Ionicons size={25} name="ios-add-circle-outline"/>
         }
     }
-}, { tabBarOptions: {
+}, {
+    tabBarOptions: {
         labelStyle: {
             fontSize: 14
         },
@@ -77,6 +79,15 @@ const AppNavigation = StackNavigator({
     },
     AddCard: {
         screen: AddCard,
+        navigationOptions: {
+            headerTintColor: colors.WHITE,
+            headerStyle: {
+                backgroundColor: colors.BLUE,
+            }
+        }
+    },
+    Quiz: {
+        screen: Quiz,
         navigationOptions: {
             headerTintColor: colors.WHITE,
             headerStyle: {

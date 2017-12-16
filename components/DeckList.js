@@ -21,7 +21,7 @@ class DeckList extends Component {
                     {deckId: item.title}
                 )}>
                 <Text style={style.deckTitle}>{item.title}</Text>
-                <Text>Questions: {item.questions.length}</Text>
+                <Text>{item.questions.length} cards</Text>
             </TouchableOpacity>
         );
     };

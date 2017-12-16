@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { styles } from '../helpers/styles';
 import { colors } from '../helpers/colors';
@@ -49,11 +49,11 @@ class Deck extends Component {
                 {this.state.deck &&
                 <View style={{flex: 0.8, justifyContent: 'flex-end', alignItems: 'center'}}>
                     <Text style={style.deckTitle}>{this.state.deck.title}</Text>
-                    <Text style={style.questionCount}>Questions: {this.state.deck.questions.length}</Text>
+                    <Text style={style.questionCount}>{this.state.deck.questions.length} cards</Text>
                 </View>
                 }
                 {this.state.deck &&
-                <View style={{flex: 1, justifyContent: 'flex-end' }}>
+                <View style={{flex: 1, justifyContent: 'flex-end'}}>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => this.props.navigation.navigate(
@@ -64,7 +64,10 @@ class Deck extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={this.submit}>
+                        onPress={() => this.props.navigation.navigate(
+                            'Quiz',
+                            {deckId: this.state.deck.title}
+                        )}>
                         <Text style={styles.buttonText}>Start quiz</Text>
                     </TouchableOpacity>
                 </View>
