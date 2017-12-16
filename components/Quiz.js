@@ -77,7 +77,9 @@ class Quiz extends Component {
                     }
                     <Text style={style.quizDoneText}>You've
                         got {this.state.questions.filter(question => question.correct).length} out
-                        of {this.state.questions.length} questions correct.</Text>
+                        of {this.state.questions.length} questions correct
+                        ({Math.round(this.state.questions.filter(question => question.correct).length / this.state.questions.length * 100)}%).
+                    </Text>
                 </View>
                 }
                 {this.state.questions.length === 0 &&
