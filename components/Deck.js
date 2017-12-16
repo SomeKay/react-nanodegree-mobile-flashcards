@@ -55,7 +55,7 @@ class Deck extends Component {
                 {this.state.deck &&
                 <View style={{flex: 1, justifyContent: 'flex-end'}}>
                     <TouchableOpacity
-                        style={styles.button}
+                        style={[styles.button, style.addCardButton]}
                         onPress={() => this.props.navigation.navigate(
                             'AddCard',
                             {deckId: this.state.deck.title}
@@ -85,6 +85,9 @@ const style = StyleSheet.create({
     questionCount: {
         color: colors.DARK_GRAY,
         fontSize: 18
+    },
+    addCardButton: {
+        backgroundColor: colors.ASPHALT
     }
 });
 

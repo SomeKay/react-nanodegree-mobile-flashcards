@@ -75,8 +75,8 @@ class Quiz extends Component {
                     <Ionicons size={60} style={style.alertIcon} name="ios-alert"/>
                     }
                     <Text style={style.quizDoneText}>You've
-                        got {this.state.questions.filter(question => question.correct).length} questions correct out
-                        of {this.state.questions.length}.</Text>
+                        got {this.state.questions.filter(question => question.correct).length} out
+                        of {this.state.questions.length} questions correct.</Text>
                 </View>
                 }
                 {this.state.questions.length === 0 &&

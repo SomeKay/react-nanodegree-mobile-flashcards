@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
@@ -12,10 +12,13 @@ import reducer from './reducers'
 import Deck from './components/Deck';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './helpers/notifications';
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification()
+    }
     render() {
-
         return (
             <Provider store={createStore(reducer)}>
                 <View style={{flex: 1}}>
@@ -49,7 +52,7 @@ const Tabs = TabNavigator({
         },
         style: {
             height: 56,
-            backgroundColor: colors.WHITE,
+            backgroundColor: Platform.OS === 'ios' ? colors.WHITE : colors.BLUE,
             shadowColor: 'rgba(0, 0, 0, 0.24)',
             shadowOffset: {
                 width: 0,

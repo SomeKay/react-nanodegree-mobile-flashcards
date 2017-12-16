@@ -16,17 +16,6 @@ function decks(state = {}, action) {
                 }
             };
         case ADD_CARD_TO_DECK:
-            console.log({
-                ...state,
-                [action.card.title]: {
-                    title: action.card.title,
-                    questions: [
-                        ...state[action.card.title].questions,
-                        { question: action.card.question, answer: action.card.answer }
-                    ]
-                }
-            });
-
             return {
                 ...state,
                 [action.card.title]: {

@@ -1,5 +1,5 @@
 import { colors } from './colors';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
     title: {
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     },
     formInput: {
         borderColor: colors.GRAY,
-        borderWidth: 1,
+        borderWidth:  Platform.OS === 'ios' ? 1 : 0,
         paddingBottom: 12,
         paddingLeft: 6,
         paddingTop: 12,
