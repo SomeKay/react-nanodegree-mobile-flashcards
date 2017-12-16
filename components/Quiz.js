@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { styles } from '../helpers/styles';
 import { Card } from './Card';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../helpers/colors';
 import { clearLocalNotification, setLocalNotification } from '../helpers/notifications';
+import { NavigationActions } from 'react-navigation';
 
 class Quiz extends Component {
     state = {
@@ -43,6 +44,14 @@ class Quiz extends Component {
             .then(setLocalNotification)
     }
 
+    resetQuiz = () => {
+        const questions = this.state.questions.map((question) => {
+            return { question: question.question, answer: question.answer, correct: false }
+        });
+
+        this.setState({questions, currentQuestionIndex: 0, showQuestion: true});
+    };
+
     handleButtons = (status) => {
         const questions = this.state.questions;
         questions[this.state.currentQuestionIndex].correct = status;
@@ -68,18 +77,33 @@ class Quiz extends Component {
                 }
                 {this.state.questions.length > 0 &&
                 this.state.currentQuestionIndex >= this.state.questions.length &&
-                <View style={style.quizDone}>
-                    {this.state.questions.filter(question => question.correct).length === this.state.questions.length &&
-                    <Ionicons size={60} style={style.checkmarkIcon} name="ios-checkmark-circle"/>
-                    }
-                    {this.state.questions.filter(question => question.correct).length !== this.state.questions.length &&
-                    <Ionicons size={60} style={style.alertIcon} name="ios-alert"/>
-                    }
-                    <Text style={style.quizDoneText}>You've
-                        got {this.state.questions.filter(question => question.correct).length} out
-                        of {this.state.questions.length} questions correct
-                        ({Math.round(this.state.questions.filter(question => question.correct).length / this.state.questions.length * 100)}%).
-                    </Text>
+                <View style={styles.container}>
+                    <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
+                        {this.state.questions.filter(question => question.correct).length === this.state.questions.length &&
+                        <Ionicons size={60} style={style.checkmarkIcon} name="ios-checkmark-circle"/>
+                        }
+                        {this.state.questions.filter(question => question.correct).length !== this.state.questions.length &&
+                        <Ionicons size={60} style={style.alertIcon} name="ios-alert"/>
+                        }
+                        <Text style={style.quizDoneText}>You've
+                            got {this.state.questions.filter(question => question.correct).length} out
+                            of {this.state.questions.length} questions correct
+                            ({Math.round(this.state.questions.filter(question => question.correct).length / this.state.questions.length * 100)}%).
+                        </Text>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                        <TouchableOpacity
+                            style={[styles.button, style.backToDeckButton]}
+                            onPress={() => this.props.navigation.dispatch(NavigationActions.back())}>
+                            <Text style={styles.buttonText}>Back to Deck</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={this.resetQuiz}>
+                            <Text style={styles.buttonText}>Restart Quiz</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 }
                 {this.state.questions.length === 0 &&
@@ -112,6 +136,9 @@ const style = StyleSheet.create({
     quizDoneText: {
         fontSize: 24,
         textAlign: 'center'
+    },
+    backToDeckButton: {
+        backgroundColor: colors.ASPHALT
     }
 });
 
