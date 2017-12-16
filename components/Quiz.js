@@ -5,6 +5,7 @@ import { styles } from '../helpers/styles';
 import { Card } from './Card';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../helpers/colors';
+import { clearLocalNotification, setLocalNotification } from '../helpers/notifications';
 
 class Quiz extends Component {
     state = {
@@ -37,9 +38,9 @@ class Quiz extends Component {
         });
 
         this.setState({questions});
-    }
 
-    componentWillReceiveProps(props) {
+        clearLocalNotification()
+            .then(setLocalNotification)
     }
 
     handleButtons = (status) => {

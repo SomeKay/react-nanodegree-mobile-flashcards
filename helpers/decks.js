@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-export const FLASHCARDS_STORAGE_KEY = 'MobileFlashCards:bunny-glass-water-lord-archer';
+export const FLASHCARDS_STORAGE_KEY = 'MobileFlashCards:bunny-glass-water-lord-tree';
 
 export function formatDeckResults(results) {
     return results === null
