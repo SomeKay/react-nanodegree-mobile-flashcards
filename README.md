@@ -16,9 +16,9 @@ The application allows you to:
 * Quiz yourself using any deck
 * Get notified if you didn't learn yet that day
 
-### Screenshots
+## Screenshots
 
-#### iOS
+### iOS
 
 ![iOS 1](screenshots/ios-1.png)
 
@@ -38,7 +38,7 @@ The application allows you to:
 
 ![iOS 9](screenshots/ios-9.png)
 
-#### Android
+### Android
 
 ![Android 1](screenshots/android-1.png)
 
