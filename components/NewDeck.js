@@ -4,6 +4,7 @@ import * as actions from '../actions';
 import * as storage from '../helpers/storage';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation'
+import { styles } from '../helpers/styles';
 
 export class NewDeck extends Component {
     state = {
@@ -28,16 +29,18 @@ export class NewDeck extends Component {
 
     render() {
         return (
-            <View>
-                <Text>New deck</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>New deck</Text>
+                <Text style={styles.formLabel}>Deck name</Text>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(title) => this.setState({ title })}
+                    style={styles.formInput}
+                    onChangeText={(title) => this.setState({title})}
                     value={this.state.title}
                 />
                 <TouchableOpacity
+                    style={styles.button}
                     onPress={this.submit}>
-                    <Text>Add deck</Text>
+                    <Text style={styles.buttonText}>Add deck</Text>
                 </TouchableOpacity>
             </View>
         );

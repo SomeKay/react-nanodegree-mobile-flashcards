@@ -4,8 +4,6 @@ import { FLASHCARDS_STORAGE_KEY, formatDeckResults } from './decks';
 export function getDecks() {
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
         .then((results) => {
-            console.log(results);
-            console.log(JSON.parse(results));
             return formatDeckResults(results);
         })
 }

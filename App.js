@@ -5,7 +5,7 @@ import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
 import FlashCardsStatusBar from './components/FlashCardsStatusBar';
 import { Ionicons } from '@expo/vector-icons';
-import { FlashcardConstants } from './components/FlashcardsConstants';
+import { colors } from './helpers/colors';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
@@ -33,7 +33,7 @@ export default class App extends React.Component {
                 },
                 style: {
                     height: 56,
-                    backgroundColor: FlashcardConstants.WHITE,
+                    backgroundColor: colors.WHITE,
                     shadowColor: 'rgba(0, 0, 0, 0.24)',
                     shadowOffset: {
                         width: 0,
