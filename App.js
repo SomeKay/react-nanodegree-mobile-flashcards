@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import DeckList from './DeckList';
-import NewDeck from './NewDeck';
-import FlashCardsStatusBar from './FlashCardsStatusBar';
+import DeckList from './components/DeckList';
+import NewDeck from './components/NewDeck';
+import FlashCardsStatusBar from './components/FlashCardsStatusBar';
 import { Ionicons } from '@expo/vector-icons';
-import { FlashcardConstants } from './FlashcardsConstants';
-
+import { FlashcardConstants } from './components/FlashcardsConstants';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 export default class App extends React.Component {
     render() {
@@ -43,10 +45,12 @@ export default class App extends React.Component {
             }
         });
         return (
-            <View style={{flex: 1}}>
-                <FlashCardsStatusBar/>
-                <Tabs/>
-            </View>
+            <Provider store={createStore(reducer)}>
+                <View style={{flex: 1}}>
+                    <FlashCardsStatusBar/>
+                    <Tabs/>
+                </View>
+            </Provider>
         );
     }
 }
