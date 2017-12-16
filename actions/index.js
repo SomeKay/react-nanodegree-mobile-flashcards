@@ -16,9 +16,9 @@ export function addDeck(title) {
     }
 }
 
-export function addCardToDeck(title, card) {
+export function addCardToDeck(title, question, answer) {
     return {
         type: ADD_CARD_TO_DECK,
-        card: { title, question }
+        card: { title, question, answer }
     }
 }

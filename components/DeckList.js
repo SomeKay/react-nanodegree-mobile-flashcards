@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks } from '../helpers/storage';
 import { receiveDecks } from '../actions';
-import { colors } from '../helpers/colors';
 import { styles } from '../helpers/styles';
 
 class DeckList extends Component {
@@ -15,10 +14,15 @@ class DeckList extends Component {
 
     renderItem = ({item}) => {
         return (
-            <View style={style.deck}>
+            <TouchableOpacity
+                style={style.deck}
+                onPress={() => this.props.navigation.navigate(
+                    'Deck',
+                    {deckId: item.title}
+                )}>
                 <Text style={style.deckTitle}>{item.title}</Text>
                 <Text>Questions: {item.questions.length}</Text>
-            </View>
+            </TouchableOpacity>
         );
     };
 
@@ -61,6 +65,4 @@ function mapStateToProps(decks) {
     }
 }
 
-export default connect(
-    mapStateToProps,
-)(DeckList);
+export default connect(mapStateToProps)(DeckList);

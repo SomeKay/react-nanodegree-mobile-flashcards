@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation'
 import { styles } from '../helpers/styles';
 
-export class NewDeck extends Component {
+class NewDeck extends Component {
     state = {
         title: ''
     };

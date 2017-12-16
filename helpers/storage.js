@@ -21,16 +21,15 @@ export function addDeck(title) {
     }));
 }
 
-export function addCardToDeck(title, card) {
+export function addCardToDeck(title, question, answer) {
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
         .then((results) => {
             const card = JSON.parse(results)[title];
-            const questions = card.questions.push(card);
 
             return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
-                [title]: {
-                    title: title,
-                    questions: questions
+                [card.title]: {
+                    title: card.title,
+                    questions: [...card.questions, { question, answer }]
                 }
             }));
         });
