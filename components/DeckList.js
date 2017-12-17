@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks } from '../helpers/storage';
 import { receiveDecks } from '../actions';
 import { styles } from '../helpers/styles';
+import DeckListItem from './DeckListItem';
 
 class DeckList extends Component {
     componentDidMount() {
@@ -12,17 +13,16 @@ class DeckList extends Component {
         getDecks().then((decks) => dispatch(receiveDecks(decks)));
     };
 
+    deckPressed = (title) => {
+        this.props.navigation.navigate(
+            'Deck',
+            {deckId: title}
+        );
+    }
+
     renderItem = ({item}) => {
         return (
-            <TouchableOpacity
-                style={style.deck}
-                onPress={() => this.props.navigation.navigate(
-                    'Deck',
-                    {deckId: item.title}
-                )}>
-                <Text style={style.deckTitle}>{item.title}</Text>
-                <Text>{item.questions.length} cards</Text>
-            </TouchableOpacity>
+            <DeckListItem item={item} onDeckPressed={this.deckPressed}/>
         );
     };
 
@@ -43,21 +43,6 @@ class DeckList extends Component {
         );
     }
 }
-
-const style = StyleSheet.create({
-    deck: {
-        borderTopColor: '#cccccc',
-        borderTopWidth: 1,
-        paddingBottom: 18,
-        paddingLeft: 12,
-        paddingRight: 12,
-        paddingTop: 18
-    },
-    deckTitle: {
-        fontSize: 20,
-        paddingBottom: 3
-    }
-});
 
 function mapStateToProps(decks) {
     return {

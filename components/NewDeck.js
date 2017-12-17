@@ -20,7 +20,7 @@ class NewDeck extends Component {
 
             this.setState({title: ''});
             Keyboard.dismiss();
-            this.props.navigation.dispatch(NavigationActions.back({key: 'NewDeck'}));
+            this.props.navigation.navigate('Deck', {deckId: this.state.title});
         }
         else {
             alert('The title is empty!');
